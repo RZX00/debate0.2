@@ -39,7 +39,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
                 onClick={handlePayment}
                 className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
               >
-                支付
+                支付以体验（9.9/月）
               </button>
             </div>
           </>
