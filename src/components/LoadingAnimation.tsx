@@ -27,16 +27,45 @@ const LoadingAnimation: React.FC = () => {
         setLoadingText(texts[index]);
         clearInterval(interval);
       }
-    }, 3000);
+    }, 2800);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-8">
-      <div className="relative w-16 h-16">
-        <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
-        <div className="absolute inset-0 border-4 border-blue-500 rounded-full animate-spin" style={{ borderTopColor: 'transparent' }}></div>
+      <div className="relative w-32 h-32">
+        <svg className="w-full h-full" viewBox="0 0 100 100">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="#E5E7EB"
+            strokeWidth="8"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="#3B82F6"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray="283"
+            strokeDashoffset="283"
+            className="animate-dash"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 50 50"
+              to="360 50 50"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
       </div>
       <div className="text-center">
         <p className="text-xl font-medium text-gray-800 mb-2">{loadingText}</p>
