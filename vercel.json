@@ -5,5 +5,11 @@
       "src": "/api/(.*)",
       "dest": "/api/index.mjs"
     }
-  ]
+  ],
+  "functions": {
+    "api/index.mjs": {
+      "maxDuration": 60
+    }
+  }
+  
 }
