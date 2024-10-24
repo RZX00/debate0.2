@@ -22,13 +22,13 @@ function App() {
 
     try {
       const response = await fetch(
-        '/api/generate-summary',
+        `${window.location.origin}/api/generate-summary`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ topic, mode: searchMode }),
+          body: JSON.stringify({ topic }),
         }
       );
 
