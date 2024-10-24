@@ -65,7 +65,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       <div className="bg-white rounded-2xl shadow-xl p-8 max-w-5xl w-full max-h-[90vh] overflow-hidden flex relative">
         {showNotification && (
           <div className="absolute top-0 left-0 right-0 bg-green-500 text-white p-4 text-center animate-fade-in-up">
-            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
           </div>
         )}
         <div className="flex-1 pr-8 overflow-y-auto">
@@ -107,7 +107,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 onClick={handleExperienceClick}
               >
                 <MessageCircle size={20} className="mr-2" />
-                支付以开始训练
+                支付以开始训练（9.9/月）
               </button>
               <button onClick={onClose} className="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors">
                 取消
