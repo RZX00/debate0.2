@@ -65,7 +65,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       <div className="bg-white rounded-2xl shadow-xl p-8 max-w-5xl w-full max-h-[90vh] overflow-hidden flex relative">
         {showNotification && (
           <div className="absolute top-0 left-0 right-0 bg-green-500 text-white p-4 text-center animate-fade-in-up">
-            感谢您的支持！该功能正在积极开发中。一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
           </div>
         )}
         <div className="flex-1 pr-8 overflow-y-auto">
@@ -77,7 +77,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </div>
           <div className="bg-gray-100 rounded-xl p-4 mb-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-2">辩题：{debateTopic}</h3>
-            <p className="text-gray-600">体验 AI 辅助下的辩论训练，提升您的辩论技巧！</p>
+            <p className="text-gray-600">体验和专业级 真知-辩论AI 的模拟辩论体验，随时随地磨辩！</p>
           </div>
           <div className="space-y-6">
             {conversation.map((message, index) => (
