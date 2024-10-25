@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Search } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 
 interface DebateTopicFormProps {
   onSubmit: (topic: string) => void
@@ -8,6 +9,14 @@ interface DebateTopicFormProps {
 
 const DebateTopicForm: React.FC<DebateTopicFormProps> = ({ onSubmit, isLoading }) => {
   const [topic, setTopic] = useState('')
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const topicFromUrl = searchParams.get('topic')
+    if (topicFromUrl) {
+      setTopic(decodeURIComponent(topicFromUrl))
+    }
+  }, [searchParams])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
