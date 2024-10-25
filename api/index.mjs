@@ -3,7 +3,8 @@
 import fetch from 'node-fetch';
 import { OpenAI } from 'openai';
 import dotenv from 'dotenv';
-
+import { Analytics } from '@vercel/analytics/react';
+ 
 dotenv.config(); // Vercel 自动加载根目录的 .env 文件
 
 // 配置 OpenAI API 客户端
@@ -55,4 +56,22 @@ export default async function handler(req, res) {
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <title>Next.js</title>
+      </head>
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
 }
