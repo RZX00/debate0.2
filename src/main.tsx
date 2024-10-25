@@ -5,7 +5,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-
+import { inject } from '@vercel/analytics'
 // 使用 StrictMode 渲染 App 组件
 // StrictMode 是一个用于突出显示应用程序中潜在问题的工具
 createRoot(document.getElementById('root')!).render(
