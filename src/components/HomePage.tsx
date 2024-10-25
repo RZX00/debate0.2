@@ -7,11 +7,12 @@ const HomePage: React.FC = () => {
   const [showAIExperience, setShowAIExperience] = useState(false);
 
   const hotTopics = [
-    "人工智能对就业的影响",
-    "全球气候变化的解决方案",
-    "社交媒体对青少年心理健康的影响",
-    "太空探索的未来发展",
-    "基因编辑技术的伦理问题"
+    "丧文化是当代中国的解药/毒药",
+    "经济学的理性人假设必要还是非必要?",
+    "网络舆论的审判，让我们离正义更近了/更远了",
+    "视频平台应不应该偷偷降低视频画质？",
+    "针对校园暴力，法律手段/教育手段更有效",
+    "原生家庭批判让年轻人更幸福/更不幸福"
   ];
 
   return (
@@ -45,11 +46,11 @@ const HomePage: React.FC = () => {
               {hotTopics.map((topic, index) => (
                 <li key={index}>
                   <Link 
-                    to={`/search?topic=${encodeURIComponent(topic)}`} 
-                    className="flex items-center justify-between bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-300 p-3 rounded-lg"
+                    to={`/search?topic=${encodeURIComponent(topic)}`}
+                    className="flex items-center justify-between bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-300 p-3 rounded-lg group"
                   >
                     <span>{topic}</span>
-                    <ChevronRight size={20} className="text-gray-400" />
+                    <ChevronRight size={20} className="text-gray-400 group-hover:text-gray-600" />
                   </Link>
                 </li>
               ))}
