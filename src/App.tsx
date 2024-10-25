@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { inject } from '@vercel/analytics';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import DebateTopicForm from './components/DebateTopicForm';
@@ -46,7 +47,7 @@ function App() {
       setIsLoading(false);
     }
   };
-
+inject();
   const handleSearchModeChange = (mode: 'simple' | 'deep') => {
     if (mode === 'deep') {
       setShowUpgradeModal(true);
