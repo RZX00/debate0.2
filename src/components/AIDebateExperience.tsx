@@ -39,9 +39,20 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     }
   ];
 
-  const handleExperienceClick = () => {
+  const handleExperienceClick = async () => {
+    const newClickCount = paymentClickCount + 1;
+    setPaymentClickCount(newClickCount); // 更新点击次数
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);
+
+    // 发送点击次数到后端
+    await fetch('/api/track-click', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ clicks: newClickCount }),
+    });
   };
 
   return (
