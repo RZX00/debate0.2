@@ -23,7 +23,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${window.location.origin}/api/generate-summary`,
+        `${window.location.origin}/api/index`,
         {
           method: 'POST',
           headers: {
