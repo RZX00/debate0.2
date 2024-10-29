@@ -9,6 +9,7 @@ interface Message {
 
 const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [showNotification, setShowNotification] = useState(false);
+  const [paymentClickCount, setPaymentClickCount] = useState(0); // 记录支付按钮点击次数
   const debateTopic = "自嘲文化是/不是对残酷现实的消解";
 
   const conversation: Message[] = [
@@ -42,8 +43,6 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleExperienceClick = async () => {
     const newClickCount = paymentClickCount + 1;
     setPaymentClickCount(newClickCount); // 更新点击次数
-    setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 5000);
 
     // 发送点击次数到后端
     await fetch('/api/track-click', {

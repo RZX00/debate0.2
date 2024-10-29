@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
     try {
       const client = await clientPromise;
-      const db = client.db('aimobian'); 
+      const db = client.db('debate20'); 
       const collection = db.collection('Cluster0'); 
 
       // 插入点击记录
