@@ -53,6 +53,8 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       },
       body: JSON.stringify({ clicks: newClickCount }),
     });
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 5000);
   };
 
   return (
