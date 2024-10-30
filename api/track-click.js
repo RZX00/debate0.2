@@ -26,10 +26,6 @@ export default async function handler(req, res) {
 
     // 连接数据库
     const client = await clientPromise;
-    if (!client) {
-      throw new Error('未能获取到 MongoClient 示例');
-    }
-
     const db = client.db('debate20');
     const collection = db.collection('Cluster0');
 
