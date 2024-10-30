@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
 const uri = "mongodb+srv://xyueli166:<db_password>@cluster0.w6gwt.mongodb.net/";
 
@@ -17,9 +17,10 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
-  } finally {
-    await client.close();
   }
 }
 
-run().catch(console.dir);
+// 使用clientPromise进行连接以确保导入时能正确复用连接
+const clientPromise = run().then(() => client);
+
+export default clientPromise;
