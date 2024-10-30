@@ -10,6 +10,8 @@ interface Message {
 const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [paymentClickCount, setPaymentClickCount] = useState(0); // 记录支付按钮点击次数
+  const [cancelClickCount, setCancelClickCount] = useState(0);//记录取消按钮点击次数
+
   const debateTopic = "自嘲文化是/不是对残酷现实的消解";
 
   const conversation: Message[] = [
@@ -43,7 +45,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleExperienceClick = async () => {
     const newClickCount = paymentClickCount + 1;
     setPaymentClickCount(newClickCount); // 更新点击次数
-    
+
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);
 
@@ -58,6 +60,23 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       body: JSON.stringify({ clicks: { count: newClickCount } }),
     });
     
+  };
+
+  const handleCancelClick = async () => {
+    const newCancelCount = cancelClickCount + 1;
+    setCancelClickCount(newCancelCount);
+    
+    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'cancel' } });
+
+    await fetch('/api/track-click', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ clicks: { count: newCancelCount, type: 'cancel' } }),
+    });
+
+    onClose(); // 关闭窗口
   };
 
   return (
@@ -121,7 +140,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             支付以开始训练
           </button>
           <button 
-            onClick={onClose} 
+            onClick={handleCancelClick} 
             className="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors"
           >
             取消
