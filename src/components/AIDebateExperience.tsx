@@ -43,6 +43,9 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleExperienceClick = async () => {
     const newClickCount = paymentClickCount + 1;
     setPaymentClickCount(newClickCount); // 更新点击次数
+    
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 5000);
 
     console.log('即将发送的请求体:', { clicks: { count: newClickCount } });
 
@@ -54,8 +57,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       },
       body: JSON.stringify({ clicks: { count: newClickCount } }),
     });
-    setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 5000);
+    
   };
 
   return (
