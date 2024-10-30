@@ -2,14 +2,20 @@
   "version": 2,
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/track-click",
+      "dest": "/api/track-click.js"
+    },
+    {
+      "src": "/api/index",
       "dest": "/api/index.mjs"
     }
   ],
   "functions": {
+    "api/track-click.js": {
+      "maxDuration": 60
+    },
     "api/index.mjs": {
       "maxDuration": 60
     }
   }
-  
 }
