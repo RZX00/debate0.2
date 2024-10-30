@@ -1,5 +1,5 @@
 // pages/api/track-click.js
-import clientPromise from './mongodb.js';
+import clientPromise from '../lib/mongodb.js';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
