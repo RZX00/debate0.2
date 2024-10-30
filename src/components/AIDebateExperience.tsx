@@ -49,7 +49,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);
 
-    console.log('即将发送的请求体:', { clicks: { count: newClickCount } });
+    console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'payment' } });
 
     // 发送点击次数到后端
     await fetch('/api/track-click', {
@@ -57,7 +57,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clicks: { count: newClickCount } }),
+      body: JSON.stringify({ clicks: { count: newClickCount, type: 'payment' } }),
     });
     
   };
