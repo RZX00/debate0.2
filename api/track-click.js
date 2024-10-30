@@ -12,14 +12,16 @@ export default async function handler(req, res) {
 
   try {
     const { clicks } = req.body;
-    
+    const clickCount = clicks.count;
+
     // 验证点击数据
-    if (!clicks || typeof clicks !== 'object') {
+    if (!clicks || typeof clicks !== 'object' || typeof clicks.count !== 'number') {
       return res.status(400).json({ 
         error: '数据格式错误',
         message: '缺少点击数据或格式不正确' 
       });
     }
+    
 
     // 连接数据库
     const client = await clientPromise;
@@ -28,7 +30,7 @@ export default async function handler(req, res) {
 
     // 准备要存储的数据
     const clickData = {
-      clicks,
+      count: clickCount,
       timestamp: new Date(),
       createdAt: new Date().toISOString()
     };
