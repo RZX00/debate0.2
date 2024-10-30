@@ -27,6 +27,9 @@ export default async function handler(req, res) {
 
     // 连接数据库
     const client = await clientPromise;
+    if(!client){
+      throw new Error('未能获取到 MongoClient 示例');
+    }
     const db = client.db('debate20');
     const collection = db.collection('Cluster0');
 
@@ -59,7 +62,7 @@ export default async function handler(req, res) {
     // 返回错误响应
     return res.status(500).json({ 
       error: '服务器内部错误',
-      message: '数据保存过程中出现错误，请稍后重试'
+      message: error.message
     });
   }
 }
