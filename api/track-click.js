@@ -23,13 +23,13 @@ export default async function handler(req, res) {
         message: '缺少点击数据或格式不正确' 
       });
     }
-    
 
     // 连接数据库
     const client = await clientPromise;
-    if(!client){
+    if (!client) {
       throw new Error('未能获取到 MongoClient 示例');
     }
+
     const db = client.db('debate20');
     const collection = db.collection('Cluster0');
 
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     // 返回错误响应
     return res.status(500).json({ 
       error: '服务器内部错误',
-      message: error.message
+      message: error.message || '未知错误'
     });
   }
 }
