@@ -44,13 +44,15 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const newClickCount = paymentClickCount + 1;
     setPaymentClickCount(newClickCount); // 更新点击次数
 
+    console.log('即将发送的请求体:', { clicks: { count: newClickCount } });
+
     // 发送点击次数到后端
     await fetch('/api/track-click', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clicks: newClickCount }),
+      body: JSON.stringify({ clicks: { count: newClickCount } }),
     });
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);

@@ -11,6 +11,8 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('接收到的请求数据:', req.body);
+
     const { clicks } = req.body;
     const clickCount = clicks.count;
 
