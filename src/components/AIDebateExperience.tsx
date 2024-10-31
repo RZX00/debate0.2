@@ -9,8 +9,8 @@ interface Message {
 
 const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [showNotification, setShowNotification] = useState(false);
-  const [paymentClickCount, setPaymentClickCount] = useState(0); // 记录支付按钮点击次数
-  const [cancelClickCount, setCancelClickCount] = useState(0);//记录取消按钮点击次数
+  const [paymentClickCount, setPaymentClickCount] = useState(0);
+  const [cancelClickCount, setCancelClickCount] = useState(0);
 
   const debateTopic = "自嘲文化是/不是对残酷现实的消解";
 
@@ -44,10 +44,15 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const handleExperienceClick = async () => {
     const newClickCount = paymentClickCount + 1;
-    setPaymentClickCount(newClickCount); // 更新点击次数
+    setPaymentClickCount(newClickCount); 
 
     setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 5000);
+
+    // 4秒后自动关闭弹窗并关闭页面
+    setTimeout(() => {
+      setShowNotification(false);
+      window.close();
+    }, 4000);
 
     console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'payment' } });
 
@@ -59,7 +64,6 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       },
       body: JSON.stringify({ clicks: { count: newClickCount, type: 'payment' } }),
     });
-    
   };
 
   const handleCancelClick = async () => {
@@ -131,16 +135,15 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </div>
           <button 
             onClick={handleExperienceClick}
-            className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center"
+            className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
           >
-            <MessageCircle size={20} className="mr-2" />
             支付以开始训练
           </button>
           <button 
-            onClick={handleCancelClick} 
-            className="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors"
+            onClick={handleCancelClick}
+            className="w-full bg-white text-gray-600 font-semibold py-2 px-4 rounded-lg border border-gray-300"
           >
-            取消
+            继续体验基础版
           </button>
         </div>
       </div>
