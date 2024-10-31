@@ -84,7 +84,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       <div className="bg-white w-full h-full md:h-auto md:max-h-[90vh] md:rounded-2xl md:max-w-5xl md:w-full overflow-hidden flex flex-col">
         {showNotification && (
           <div className="absolute top-0 left-0 right-0 bg-green-500 text-white p-4 text-center animate-fade-in-up z-50">
-            感谢您的支持！该功能正在积极开发中。一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
           </div>
         )}
         
