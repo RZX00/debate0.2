@@ -91,10 +91,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <div className="flex-1 overflow-y-auto">
           <div className="sticky top-0 bg-white z-40 px-4 py-3 border-b border-gray-200">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">AI 磨辩</h2>
-              <button onClick={onClose} className="p-2 text-gray-500 hover:text-gray-700">
-                <X size={24} />
-              </button>
+              <h2 className="text-2xl font-bold text-gray-900">AI 磨辩（预览效果）</h2>
             </div>
           </div>
 
