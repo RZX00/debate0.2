@@ -8,9 +8,9 @@ interface Message {
 }
 
 const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [showNotification, setShowNotification] = useState(false);
-  const [paymentClickCount, setPaymentClickCount] = useState(0); // 记录支付按钮点击次数
-  const [cancelClickCount, setCancelClickCount] = useState(0);//记录取消按钮点击次数
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [paymentClickCount, setPaymentClickCount] = useState(0);
+  const [cancelClickCount, setCancelClickCount] = useState(0);
 
   const debateTopic = "自嘲文化是/不是对残酷现实的消解";
 
@@ -44,17 +44,14 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const handleExperienceClick = async () => {
     const newClickCount = paymentClickCount + 1;
-    setPaymentClickCount(newClickCount); // 更新点击次数
+    setPaymentClickCount(newClickCount);
 
-    setShowNotification(true);
+    setShowThankYou(true);
     setTimeout(() => {
-      setShowNotification(false);
-      onClose(); // 关闭窗口
+      setShowThankYou(false);
+      onClose();
     }, 5000);
 
-    console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'aimobianpayment' } });
-
-    // 发送点击次数到后端
     await fetch('/api/track-click', {
       method: 'POST',
       headers: {
@@ -62,16 +59,12 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       },
       body: JSON.stringify({ clicks: { count: newClickCount, type: 'aimobianpayment' } }),
     });
-    
   };
 
   const handleCancelClick = async () => {
     const newCancelCount = cancelClickCount + 1;
     setCancelClickCount(newCancelCount);
-
-    onClose(); // 关闭窗口
-    
-    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'aimobiancancel' } });
+    onClose();
 
     await fetch('/api/track-click', {
       method: 'POST',
@@ -80,75 +73,75 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       },
       body: JSON.stringify({ clicks: { count: newCancelCount, type: 'aimobiancancel' } }),
     });
-
-
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white w-full h-full md:h-auto md:max-h-[90vh] md:rounded-2xl md:max-w-5xl md:w-full overflow-hidden flex flex-col">
-        {showNotification && (
-          <div className="absolute top-0 left-0 right-0 bg-green-500 text-white p-4 text-center animate-fade-in-up z-50">
-            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
-          </div>
-        )}
-        
-        <div className="flex-1 overflow-y-auto">
-          <div className="sticky top-0 bg-white z-40 px-4 py-3 border-b border-gray-200">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">AI 磨辩（预览效果）</h2>
-            </div>
-          </div>
-
-          <div className="p-4">
-            <div className="bg-gray-100 rounded-xl p-4 mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">辩题：{debateTopic}</h3>
-              <p className="text-sm text-gray-600">体验 AI 辅助下的辩论训练，提升您的辩论技巧！</p>
+      {!showThankYou ? (
+        <div className="bg-white w-full h-full md:h-auto md:max-h-[90vh] md:rounded-2xl md:max-w-5xl md:w-full overflow-hidden flex flex-col">
+          <div className="flex-1 overflow-y-auto">
+            <div className="sticky top-0 bg-white z-40 px-4 py-3 border-b border-gray-200">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-gray-900">AI 磨辩（预览效果）</h2>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              {conversation.map((message, index) => (
-                <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-xl shadow-sm ${message.role === 'user' ? 'bg-blue-50' : 'bg-gray-50'}`}>
-                    <div className={`flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'} p-2 border-b ${message.role === 'user' ? 'border-blue-100' : 'border-gray-200'}`}>
-                      {message.role === 'ai' ? <Bot size={18} className="mr-2 text-gray-600" /> : <User size={18} className="ml-2 text-blue-600" />}
-                      <span className="font-medium text-sm text-gray-800">{message.role === 'user' ? '正方：是消解' : '反方：不是消解'}</span>
-                    </div>
-                    <div className="p-3">
-                      <p className="text-sm text-gray-800">{message.content}</p>
-                    </div>
-                    <div className={`text-xs ${message.role === 'user' ? 'text-blue-600' : 'text-gray-600'} p-2 text-right`}>
-                      {message.stage}
+            <div className="p-4">
+              <div className="bg-gray-100 rounded-xl p-4 mb-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">辩题：{debateTopic}</h3>
+                <p className="text-sm text-gray-600">体验 AI 辅助下的辩论训练，提升您的辩论技巧！</p>
+              </div>
+
+              <div className="space-y-4">
+                {conversation.map((message, index) => (
+                  <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[85%] rounded-xl shadow-sm ${message.role === 'user' ? 'bg-blue-50' : 'bg-gray-50'}`}>
+                      <div className={`flex items-center ${message.role === 'user' ? 'justify-end' : 'justify-start'} p-2 border-b ${message.role === 'user' ? 'border-blue-100' : 'border-gray-200'}`}>
+                        {message.role === 'ai' ? <Bot size={18} className="mr-2 text-gray-600" /> : <User size={18} className="ml-2 text-blue-600" />}
+                        <span className="font-medium text-sm text-gray-800">{message.role === 'user' ? '正方：是消解' : '反方：不是消解'}</span>
+                      </div>
+                      <div className="p-3">
+                        <p className="text-sm text-gray-800">{message.content}</p>
+                      </div>
+                      <div className={`text-xs ${message.role === 'user' ? 'text-blue-600' : 'text-gray-600'} p-2 text-right`}>
+                        {message.stage}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="sticky bottom-0 w-full bg-white border-t border-gray-200 p-4 space-y-3">
-          <div className="bg-gray-100 rounded-lg p-3 mb-3">
-            <p className="text-sm text-gray-600">
-              升级至高级计划以获得完整体验，包括个性化训练、详细反馈和进度追踪。
-              <span className="block mt-1 font-semibold text-blue-600">仅需 ¥9.9/月</span>
-            </p>
+          <div className="sticky bottom-0 w-full bg-white border-t border-gray-200 p-4 space-y-3">
+            <div className="bg-gray-100 rounded-lg p-3 mb-3">
+              <p className="text-sm text-gray-600">
+                升级至高级计划以获得完整体验，包括个性化训练、详细反馈和进度追踪。
+                <span className="block mt-1 font-semibold text-blue-600">仅需 ¥9.9/月</span>
+              </p>
+            </div>
+            <button 
+              onClick={handleExperienceClick}
+              className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center"
+            >
+              <MessageCircle size={20} className="mr-2" />
+              支付以开始训练
+            </button>
+            <button 
+              onClick={handleCancelClick} 
+              className="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors"
+            >
+              取消
+            </button>
           </div>
-          <button 
-            onClick={handleExperienceClick}
-            className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center"
-          >
-            <MessageCircle size={20} className="mr-2" />
-            支付以开始训练
-          </button>
-          <button 
-            onClick={handleCancelClick} 
-            className="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors"
-          >
-            取消
-          </button>
         </div>
-      </div>
+      ) : (
+        <div className="bg-white rounded-lg p-6 max-w-md w-full">
+          <p className="text-green-600 font-semibold">
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+          </p>
+        </div>
+      )}
     </div>
   );
 };
