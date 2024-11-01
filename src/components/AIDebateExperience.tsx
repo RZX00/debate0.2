@@ -47,8 +47,10 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setPaymentClickCount(newClickCount); // 更新点击次数
 
     setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 5000);
-    onClose();
+    setTimeout(() => {
+      setShowNotification(false);
+      onClose(); // 关闭窗口
+    }, 5000);
 
     console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'aimobianpayment' } });
 

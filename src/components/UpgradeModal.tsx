@@ -15,8 +15,10 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
     setPaymentClickCount(newPaymentCount); // 更新支付按钮点击次数
 
     setShowThankYou(true);
-    setTimeout(() => setShowThankYou(false), 5000);
-    onClose();
+    setTimeout(() => {
+      setShowThankYou(false);
+      onClose(); // 关闭窗口
+    }, 5000);
 
     console.log('即将发送的请求体:', { clicks: { count: newPaymentCount, type: 'deepsearchpayment' } });
 
