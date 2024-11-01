@@ -65,6 +65,8 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleCancelClick = async () => {
     const newCancelCount = cancelClickCount + 1;
     setCancelClickCount(newCancelCount);
+
+    onClose(); // 关闭窗口
     
     console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'aimobiancancel' } });
 
@@ -76,7 +78,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       body: JSON.stringify({ clicks: { count: newCancelCount, type: 'aimobiancancel' } }),
     });
 
-    onClose(); // 关闭窗口
+
   };
 
   return (
