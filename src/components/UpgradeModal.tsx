@@ -7,12 +7,47 @@ interface UpgradeModalProps {
 
 const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
   const [showThankYou, setShowThankYou] = useState(false);
+  const [paymentClickCount, setPaymentClickCount] = useState(0); // 支付按钮点击次数
+  const [cancelClickCount, setCancelClickCount] = useState(0);   // 取消按钮点击次数
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
+    const newPaymentCount = paymentClickCount + 1;
+    setPaymentClickCount(newPaymentCount); // 更新支付按钮点击次数
+
     setShowThankYou(true);
-    setTimeout(() => {
-      onClose();
-    }, 3000);
+    setTimeout(() => setShowThankYou(false), 5000);
+
+    console.log('即将发送的请求体:', { clicks: { count: newPaymentCount, type: 'aimobianpayment' } });
+
+    // 记录支付按钮点击事件
+    await fetch('/api/track-click', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ clicks: { count: newPaymentCount, type: 'deepsearchPayment' } }),
+    });
+
+  };
+
+  const handleCancel = async () => {
+    const newCancelCount = cancelClickCount + 1;
+    setCancelClickCount(newCancelCount); // 更新取消按钮点击次数
+    
+    onClose();
+    
+    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'aimobiancancel' } });
+
+    // 记录取消按钮点击事件
+    await fetch('/api/track-click', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ clicks: { count: newCancelCount, type: 'deepsearchCancel' } }),
+    });
+
+
   };
 
   return (
@@ -27,7 +62,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
             <p className="mb-6">深度搜索将增加学术搜索和专业数据搜索(如相关法案、实验报告、经济数据等专业数据来源），并使用专业训练的大模型提供更丰富全面细致的回答。</p>
             <div className="flex justify-end space-x-4">
               <button
-                onClick={onClose}
+                onClick={handleCancel}
                 className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors"
               >
                 取消
