@@ -20,13 +20,10 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
       <div className="bg-white rounded-lg p-6 max-w-md w-full">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-indigo-900">升级高级方案</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-            <X size={24} />
-          </button>
         </div>
         {!showThankYou ? (
           <>
-            <p className="mb-6">升级高级方案以体验深度搜索功能（9.9元/月）</p>
+            <p className="mb-6">升级高级方案以体验不限次数的深度搜索功能与AI磨辩功能（9.9元/月）</p>
             <p className="mb-6">深度搜索将增加学术搜索和专业数据搜索(如相关法案、实验报告、经济数据等专业数据来源），并使用专业训练的大模型提供更丰富全面细致的回答。</p>
             <div className="flex justify-end space-x-4">
               <button

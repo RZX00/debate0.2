@@ -84,17 +84,14 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       <div className="bg-white w-full h-full md:h-auto md:max-h-[90vh] md:rounded-2xl md:max-w-5xl md:w-full overflow-hidden flex flex-col">
         {showNotification && (
           <div className="absolute top-0 left-0 right-0 bg-green-500 text-white p-4 text-center animate-fade-in-up z-50">
-            感谢您的支持！该功能正在积极开发中。一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
           </div>
         )}
         
         <div className="flex-1 overflow-y-auto">
           <div className="sticky top-0 bg-white z-40 px-4 py-3 border-b border-gray-200">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">AI 磨辩</h2>
-              <button onClick={onClose} className="p-2 text-gray-500 hover:text-gray-700">
-                <X size={24} />
-              </button>
+              <h2 className="text-2xl font-bold text-gray-900">AI 磨辩（预览效果）</h2>
             </div>
           </div>
 
