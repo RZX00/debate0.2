@@ -49,7 +49,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 5000);
 
-    console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'payment' } });
+    console.log('即将发送的请求体:', { clicks: { count: newClickCount, type: 'aimobianpayment' } });
 
     // 发送点击次数到后端
     await fetch('/api/track-click', {
@@ -57,7 +57,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clicks: { count: newClickCount, type: 'payment' } }),
+      body: JSON.stringify({ clicks: { count: newClickCount, type: 'aimobianpayment' } }),
     });
     
   };
@@ -66,14 +66,14 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const newCancelCount = cancelClickCount + 1;
     setCancelClickCount(newCancelCount);
     
-    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'cancel' } });
+    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'aimobiancancel' } });
 
     await fetch('/api/track-click', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clicks: { count: newCancelCount, type: 'cancel' } }),
+      body: JSON.stringify({ clicks: { count: newCancelCount, type: 'aimobiancancel' } }),
     });
 
     onClose(); // 关闭窗口
