@@ -17,7 +17,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
     setShowThankYou(true);
     setTimeout(() => setShowThankYou(false), 5000);
 
-    console.log('即将发送的请求体:', { clicks: { count: newPaymentCount, type: 'aimobianpayment' } });
+    console.log('即将发送的请求体:', { clicks: { count: newPaymentCount, type: 'deepsearchpayment' } });
 
     // 记录支付按钮点击事件
     await fetch('/api/track-click', {
@@ -35,8 +35,8 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
     setCancelClickCount(newCancelCount); // 更新取消按钮点击次数
     
     onClose();
-    
-    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'aimobiancancel' } });
+
+    console.log('即将发送的取消请求体:', { clicks: { count: newCancelCount, type: 'deepsearchcancel' } });
 
     // 记录取消按钮点击事件
     await fetch('/api/track-click', {
