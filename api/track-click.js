@@ -15,9 +15,10 @@ export default async function handler(req, res) {
 
     const { clicks } = req.body;
     const clickCount = clicks.count;
+    const clickType = clicks.type;
 
     // 验证点击数据
-    if (!clicks || typeof clicks !== 'object' || typeof clicks.count !== 'number') {
+    if (!clicks || typeof clicks !== 'object' || typeof clicks.count !== 'number' || !clickType) {
       return res.status(400).json({ 
         error: '数据格式错误',
         message: '缺少点击数据或格式不正确' 
@@ -39,18 +40,29 @@ export default async function handler(req, res) {
       createdAt: new Date().toISOString()
     };
 
-    // 存储数据
-    const result = await collection.insertOne(clickData);
+    // 使用 updateOne 来更新或插入数据
+    const filter = { type: clickType };
+    const update = { 
+      $set: {
+        timestamp: clickData.timestamp,
+        createdAt: clickData.createdAt,
+      },
+      $inc: { count: clickCount }
+    };
+    const options = { upsert: true }; // 如果没有找到匹配的记录则插入新记录
 
-    if (!result.insertedId) {
-      throw new Error('数据存储失败');
+    // 存储数据
+    const result = await collection.updateOne(filter, update, options);
+
+    if (!result.matchedCount && !result.upsertedCount) {
+      throw new Error('数据更新失败');
     }
 
     // 返回成功响应
     return res.status(200).json({ 
       success: true,
-      message: '点击记录已成功保存',
-      id: result.insertedId,
+      message: '点击记录已成功保存或更新',
+      id: result.upsertedId || null, // 如果是插入操作会有 upsertedId
       timestamp: clickData.timestamp
     });
 
