@@ -138,7 +138,9 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       ) : (
         <div className="bg-white rounded-lg p-6 max-w-md w-full">
           <p className="text-green-600 font-semibold">
-            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！
+            wow！没想到你真的愿意付费体验我们的功能！感谢您的支持！我们会全力开发该功能！一旦上线，我们将立即通知您。期待为您带来更优质的体验！</p>
+            <p>
+            为表歉意，在该功能正式上线后，您将拥有内测用户专属的免费使用权！再次感谢您的支持
           </p>
         </div>
       )}
