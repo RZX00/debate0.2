@@ -116,8 +116,8 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           <div className="sticky bottom-0 w-full bg-white border-t border-gray-200 p-4 space-y-3">
             <div className="bg-gray-100 rounded-lg p-3 mb-3">
               <p className="text-sm text-gray-600">
-                升级至高级计划以获得完整体验，包括个性化训练、详细反馈和进度追踪。
-                <span className="block mt-1 font-semibold text-blue-600">仅需 ¥9.9/月</span>
+                亲爱的各位先行者们：内测期间，我们“打骨折价”的“高级方案”是创始人奉上的专属福利！也希望大家能畅享不限次数、独一无二的深度搜索功能与AI磨辩功能。升级至高级计划以获得完整体验，包括深度搜索、专项训练、详细反馈和进度追踪，。
+                <span className="block mt-1 font-semibold text-blue-600">仅需2.69RMB/月</span>
               </p>
             </div>
             <button 
