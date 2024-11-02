@@ -63,14 +63,14 @@ const HomePage: React.FC = () => {
             <Zap className="mr-2 text-blue-500" size={24} />
             AI 磨辩
           </h2>
-          <p className="mb-4 text-gray-600">和大师级AI磨辩，提升你的辩论技巧！</p>
+          <p className="mb-4 text-gray-600">随时随地开启磨辩！任一环节，立论、质询、接质、对辩、结辩？应有尽有，供你选择！</p>
           <button 
             className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-600 transition-all duration-300"
             onClick={() => setShowAIExperience(true)}
           >
             体验
           </button>
-          <p className="mt-4 text-sm text-gray-500">升级至高级计划以获得完整体验（¥9.9/月）</p>
+          <p className="mt-4 text-sm text-gray-500"></p>
         </div>
       </main>
 
