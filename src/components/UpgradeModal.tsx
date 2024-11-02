@@ -61,11 +61,9 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
         </div>
         {!showThankYou ? (
           <>
-            <p className="mb-6">升级高级方案以体验不限次数的深度搜索功能与AI磨辩功能。</p>
-            <span className="block mt-1 font-semibold text-blue-600">仅需2.69RMB/月 or 0.1/3次深度搜索</span>
-            <p className="mb-6">亲爱的各位先行者们：内测期间，我们“打骨折价”的“高级方案”是创始人奉上的专属福利！也希望大家能畅享不限次数、独一无二的深度搜索功能与AI磨辩功能。
-深度搜索将增加学术搜索和专业数据搜索（如相关法案、实验报告、经济数据等专业数据来源），并使用【专业级辩论大模型】提供更丰富全面细致的回答。
-机不可失，时不再来，内测结束后我们将恢复原价，同时发放首批高级付费用户专属福利！</p>
+            <p className="mb-6">亲爱的各位先行者们：内测期间，我们“打骨折价”的“高级方案”是创始人奉上的专属福利！也希望大家能畅享不限次数、独一无二的深度搜索功能与AI磨辩功能。</p>
+            <span className="block mt-1 font-semibold text-blue-600">仅需2.69RMB/月 or 0.1RMB/3次深度搜索</span>
+            <p className="mb-6">深度搜索将增加学术搜索和专业数据搜索（如相关法案、实验报告、经济数据等专业数据来源），并使用【专业级辩论大模型】提供更丰富全面细致的回答。内测结束后我们将恢复原价，同时发放首批高级付费用户专属福利！</p>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleCancel}
