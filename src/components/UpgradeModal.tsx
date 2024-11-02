@@ -86,6 +86,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
             <p className="text-green-600 font-semibold">
             为表歉意，在该功能正式上线后，您将拥有内测用户专属的免费使用权！再次感谢您的支持!
           </p>
+         </div>
         )}
       </div>
     </div>
