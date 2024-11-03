@@ -63,7 +63,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ onClose }) => {
           <>
             <p className="mb-6">升级高级方案畅享【深度搜索】功能与【AI磨辩】功能。</p>
             <p className="mb-6">深度搜索将增加学术搜索和专业数据搜索（如相关法案、实验报告、经济数据等专业数据来源），并使用【专业级辩论大模型】提供更丰富全面细致的回答。内测结束后我们将恢复原价，同时发放首批高级付费用户专属福利！</p>
-             <span className="block mt-1 font-semibold text-blue-600">仅需5.69RMB/月 or 0.1RMB/3次深度搜索</span>
+             <span className="block mt-1 font-semibold text-blue-600">仅需5.69RMB/月 or 1RMB/10次深度搜索</span>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleCancel}
