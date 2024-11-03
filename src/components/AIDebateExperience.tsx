@@ -117,7 +117,7 @@ const AIDebateExperience: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             <div className="bg-gray-100 rounded-lg p-3 mb-3">
               <p className="text-sm text-gray-600">
                 亲爱的各位先行者们：内测期间，您可尊享最低价订阅高级方案的权限，您将获得包括深度搜索、专项训练、详细反馈和进度追踪等功能的第一时间体验权！
-                <span className="block mt-1 font-semibold text-blue-600">仅需2.69RMB/月</span>
+                <span className="block mt-1 font-semibold text-blue-600">仅需5.69RMB/月</span>
               </p>
             </div>
             <button 
