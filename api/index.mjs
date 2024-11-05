@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
       // 使用 OpenAI API 生成事件概述
       const openaiResponse = await openaiClient.chat.completions.create({
-        model: 'qwen-turbo-0919',
+        model: 'qwen-turbo',
         messages: [{
           role: 'user',
           content: `你是一个辩题信息整理专家，你的语言风格一针见血，独到犀利，会保留所有有价值的信息，没有废话。请你根据以下信息生成关于 "${topic}" 的详细辩论主题信息，包括背景、关键概念解释、时间线、各方观点、争议焦点、社会影响、相关案例和最新进展。请以Markdown格式输出，使用适当的标题层级和列表格式。对于引用到的相关信息，请在文本中添加角标标注，所有引用的链接需在文本最后列出.：\n${JSON.stringify(serperData)}`
